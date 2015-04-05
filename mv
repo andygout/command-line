@@ -1,0 +1,9 @@
+mv command
+Moves files using two parameters:
+1. Current location of file
+2. Desired location of file
+i.e. mv file ../file
+NB. Neither is necessarily required to be user's current location.
+
+File can also be renamed if second parameter gives new name.
+i.e. mv file1 ../file2
