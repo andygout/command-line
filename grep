@@ -1,0 +1,8 @@
+grep command
+Searches (possibly using regular expressions) for specified text (parameter 1) within selected files (parameter 2).
+i.e. head *.html
+Above will search for text 'head' within all html files (i.e. those with an html suffix).
+
+Can also search within a set of results passed to it via pipes redirecting output.
+i.e. env | grep ^T
+Above will search for all environmental variables that begin with capital letter T.
