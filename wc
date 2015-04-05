@@ -1,0 +1,16 @@
+wc command
+Gives the byte, line, character and word count for given file.
+i.e. wc file.txt
+Above will state respective counts for text within the file.
+
+wc -c (byte count)
+wc -l (line count)
+wc -m (character count)
+wc -w (word count)
+Specific commands only call respective counts.
+i.e. wc -w file.txt
+Above gives word count only of text within the file.
+
+The command can be applied to results passed to it via pipe redirection.
+i.e. env | grep ^T | wc -l
+Above counts lines of results (i.e. number of results) of a list of environmental variables that begin with capital letter T.
