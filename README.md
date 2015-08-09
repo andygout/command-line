@@ -16,9 +16,9 @@ Applications  Documents Library   Music   Public
 Desktop   Downloads Movies    Pictures  myFile
 ```
 
-`$ ls -a` will list everything including invisible files
+`$ ls -A` will list everything including invisible files
 
-`$ ls -la` will list everything including invisible files in long format (displays user permissions); shorthand for `ls -l -a`, combining multiple switches (or parameters) in one command (`-l` = *long format*; `-a` = *all files*)
+`$ ls -lA` will list everything including invisible files in long format (displays user permissions); shorthand for `ls -l -A`, combining multiple switches (or parameters) in one command (`-l` = *long format*; `-A` = *all files*)
 
 
 #### Print working directory
@@ -55,3 +55,96 @@ Desktop   Downloads Movies    Pictures  myFile
 `rm -i` => `-i` switch = *interactive*; will prompt you to confirm that you want to delete each file (useful for when you have lot of files but only want to delete a few)
 
 `rm -f` => `-f` switch = *force*; will remove any file even if 'write protected'
+
+
+#### Copying files
+
+`cp newfile filecopy` => two parameters required: file to be copied and name of the resultant duplicate
+
+
+#### Moving files
+
+`mv newfile ../newfile` => two parameters: file to be moved (and its location) and location to where file will be moved (in this case the parent directory); if second parameter has different name then file will be renamed:
+
+`mv newfile filecopy` => will essentially rename the file
+
+
+#### Viewing and writing files
+
+`cat file1` => will display file's text; `cat` = *concatenate*
+
+`cat > file1` => allows you to type text into a file but will delete all pre-existing text; end by hitting return then Ctrl-C
+
+`cat file1 file2 > combined` => combines text of two files into new third file
+
+`less longtext.txt` => displays a file with lots of text, allowing you to scroll up and down with keyboard to view entire document; quit by typing `q`
+
+`head -3 longtext.txt` => displays first three lines only (with no parameter it will default to first ten lines, i.e. `head longtext.txt`)
+
+`tail -3 longtext.text` => displays last three lines only
+
+`tail -f log.text` => switch that allows you to watch last 10 messags of log (i.e. `tail -f /private/var/log/system.log`); Ctrl-C to stop tailing
+
+
+#### Getting help
+
+`man ls` => provides manual for *list* function
+
+
+#### Pipes and redirection
+
+KEYBOARD -> 1.stdin -> PROGRAMME -> 2.stdout -> DISPLAY
+
+`cat combined.txt | less` => passes the output stream (what would normally be printed on the screen) of the command to left of pipe to the input stream of the command on the right; so here passing output of the file `combined.txt` into the `less` command
+
+`ls -lA | less` => allows you (with thousands of files) to move up and down the resultant list as if the output were a normal file
+
+`cat combined.txt > newcombined.txt` => writes the output stream of the command on the left to the file on the right
+
+
+#### Advanced searches: ls
+
+`ls *.txt` => list files in current directory that have a `.txt` suffix only
+
+`ls new*.txt` => list files with text suffix that has filename starting with 'new'
+
+`ls *` => list all files
+
+`ls *n*` => list all files that include an 'n' (with characters on either side)
+
+
+#### Advanced searches: find
+
+`find . -name "*.txt" -print` => another way to list specific files, and will also search all subdirectories rather than just current one
+
+`cd ~`, then `find . -name "*.txt" -print` => will print every text file in home directory
+
+`cd ~`; then `find . -name *.mp3 -print > myMusic.text` => creates a text document that lists every mp3 file in Music directory
+
+
+#### Advanced searches: grep
+
+`grep binary *.txt` => takes two parameters: first is search term (i.e. 'binary'; actually a regex); second is which files to search the content of for this term
+
+`find ~ -name "*.txt" -print | grep README` => prints all text files in home directory that have 'readme' in their name: first command will find all matching files but instead of printing will redirect to grep which will only print those filenames that include 'readme'
+
+`find ~ -name "*" -print | grep "\d+"` => looks for all files that have numbers in the filename
+
+
+#### Counting lines, words and characters
+
+`wc longtext.txt` => `8     492    3003 longtext.txt`; `wc` = *word count*: line, word and character count for given file
+
+`wc -l longtext.txt` => `8 longtext.txt` (lines only)
+
+`wc -w longtext.txt` => `492 longtext.txt` (words only)
+
+`wc -c longtext.txt` => `3003 longtext.txt` (characters only)
+
+`find ~ -name "*.txt" -print | grep README | wc -l` => finds all text files; grep selects those that have 'readme' in their filename; `wc -l` will count how many lines were given to it by grep
+
+
+Links:
+-------
+
+[Makers Academy: Pre-course - Command Line](https://github.com/makersacademy/pre_course/blob/master/pills/command_line.md)
